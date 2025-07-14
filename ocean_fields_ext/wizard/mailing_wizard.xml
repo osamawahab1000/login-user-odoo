@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <record id="mailing_wizard_form" model="ir.ui.view">
+            <field name="name">mailing.wizard.form</field>
+            <field name="model">mailing.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Mailing Wizard">
+                    <group>
+                        <group>
+
+                             <field name="partner_id"/>
+                             <!-- <field name="ticket_ids" widget='many2many_tags'/> -->
+                             <field name="mailing_list"/>
+
+                        </group>
+                    </group>
+                    <footer>
+                         <button name="action_create_contacts" string="Create Contact" class="btn-primary" type="object"/>
+
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mailing_wizard" model="ir.actions.act_window">
+            <field name="name">Mailing Wizard</field>
+            <field name="res_model">mailing.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+   </data>
+</odoo>

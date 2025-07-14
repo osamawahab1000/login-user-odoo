@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!-- <record id="action_view_invoicess" model="ir.actions.act_window">
+            <field name="name">Invoices</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('crm_id', '=', active_id)]</field>
+            <field name="context">{'search_default_crm_id': active_id,'default_crm_id': active_id}</field>
+        </record> -->
+        <record id="crm_lead_inherited_form" model="ir.ui.view">
+            <field name="name">crm.lead.inherited.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+            <!--1239 is record in windows action created in odoo -->
+                <xpath expr="//button[@name='action_show_potential_duplicates']" position="after">
+                    <button class="oe_stat_button" icon="fa-diamond" type="action" name="1289">
+                    <field widget="statinfo" name="crm_id_count" string="Invoice"/>
+                    </button>
+                </xpath>
+  
+                <xpath expr="//header" position="inside">
+                    <button name="start_stage_timer" 
+                            string="Start Stage Timer" 
+                            type="object" 
+                            class="oe_highlight"/>
+
+                    <button name="action_open_out_invoices"
+                    type="object"
+                    string="Create Invoices"
+                    class="oe_stat_button"
+                    />
+                </xpath>
+
+                <field name="user_id" position="after">
+                        <field name="product_id" invisible="stage_id == 1"/>
+                        <field name="deadline"/>
+                        <field name="tat_failed"/>
+                        <field name="deadline_1"/>
+                        <field name="crm_id_count" invisible="1"/>
+
+                </field>
+                <field name="tag_ids" position="after">
+                        <field name="agreement_signed" invisible="stage_id not in (7,8,9,10,11)"/>
+                        <field name="agreement_signed_2" invisible="stage_id not in (7,8,9,10,11)"/>
+                </field>
+
+                <!-- <field name="tag_ids" position="before">
+                                        
+                    
+                </field> -->
+
+
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+    <page string="Product WIse Checkboxes" invisible="stage_id not in (7,8,9,10,11)">
+        <group>
+
+                <label for="checkbox1" invisible="product_id not in (10,13,14)">Proposal</label>
+                                <div class="proposal" invisible="product_id not in (10,13,14)">
+                                    <field name="checkbox1" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment1"  class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox2" invisible="product_id not in (10,13,14)">WABA Access Request Form</label>
+                                <div class="waba_Access_request" invisible="product_id not in (10,13,14)">
+                                    <field name="checkbox2" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment2" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox3" invisible="product_id not in (10,13,14)">Service Level Agreement</label>
+                                <div class="service_level_agreement" invisible="product_id not in (10,13,14)">
+                                    <field name="checkbox3" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment3" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox4" invisible="product_id not in (7,8,9)">VOICEOVER</label>
+                                <div class="voiceover" invisible="product_id not in (7,8,9)">
+                                    <field name="checkbox4" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment4" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox5" invisible="product_id not in (7,8,9)">Proposal Go-Ahead</label>
+                                <div class="proposal_go_ahead" invisible="product_id not in (7,8,9)">
+                                    <field name="checkbox5" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment5" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox6" invisible="product_id not in (7,8,9)">Recording Script</label>
+                                <div class="recording_script" invisible="product_id not in (7,8,9)">
+                                    <field name="checkbox6" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment6" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox7" invisible="product_id not in (7,8,9)">Service Level Agreement</label>
+                                <div class="service_level_agreement_1" invisible="product_id not in (7,8,9)">
+                                    <field name="checkbox7" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment7" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox8" invisible="product_id not in (5,6)">Service Level Agreement</label>
+                                <div class="service_level_agreement_2" invisible="product_id not in (5,6)">
+                                    <field name="checkbox8" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment8" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox9" invisible="product_id not in (5,6)">Proposal Go-Ahead</label>
+                                <div class="proposal_go_ahead_1" invisible="product_id not in (5,6)">
+                                    <field name="checkbox9" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment9" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox10" invisible="product_id not in (5,6)">Client Info Form</label>
+                                <div class="client_info" invisible="product_id not in (5,6)">
+                                    <field name="checkbox10" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment10" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox11" invisible="product_id not in (5,6)">ShortCode Request Letter</label>
+                                <div class="request_letter" invisible="product_id not in (5,6)">
+                                    <field name="checkbox11" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment11" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox12" invisible="product_id not in (5,6)">NTN</label>
+                                <div class="ntn" invisible="product_id not in (5,6)">
+                                    <field name="checkbox12" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment12" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox13" invisible="product_id not in (5,6)">SECP Certificate</label>
+                                <div class="secp_certificate" invisible="product_id not in (5,6)">
+                                    <field name="checkbox13" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment13" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox14" invisible="product_id not in (5,6)">Sample SMS Texts</label>
+                                <div class="sample_sms_texts" invisible="product_id not in (5,6)">
+                                    <field name="checkbox14" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment14" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox15" invisible="product_id not in (5,6)">Undertaking</label>
+                                <div class="undertaking" invisible="product_id not in (5,6)">
+                                    <field name="checkbox15" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment15" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+                <label for="checkbox16" invisible="product_id not in (5,6)">Company Profile</label>
+                                <div class="company_profile" invisible="product_id not in (5,6)">
+                                    <field name="checkbox16" invisible="stage_id not in (7,8,9,10,11)"/>
+                                    <field name="attachment16" nolabel="1" class="oe_inline align-top" invisible="stage_id not in (7,8,9,10,11)"/>
+                                </div>
+            
+
+                <!-- <field name="checkbox1" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="attachment1" invisible="stage_id not in (7,8,9,10,11)"/> -->
+
+                <!-- <field name="checkbox2" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox3" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox4" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox5" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox6" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox7" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox8" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox9" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox10" invisible="stage_id not in (7,8,9,10,11)"/>
+                <field name="checkbox11" invisible="stage_id not in (7,8,9,10,11)"/> -->
+                    
+        </group>
+        <group>
+        </group>
+
+    </page>
+    <page string="ER Calculation" invisible="stage_id == 1">
+        <group>    
+            <group>
+            
+                <field name="fiscal_id"/>
+                <field name="otc" invisible="product_id == 13"/>
+                <field name="mrc"/>
+                <field name="qty" invisible="product_id not in (5,6) "/>
+                <field name="price" invisible="product_id not in (5,6) "/>
+                <field name="uan_qty" invisible="product_id not in (7,8,9) "/>
+                <field name="uan_price" invisible="product_id not in (7,8,9) "/>
+                <field name="cloud_qty" invisible="product_id not in (7,8,9) "/>
+                <field name="cloud_price" invisible="product_id not in (7,8,9) "/>
+                <field name="reordering_qty" invisible="product_id not in (7,8,9) "/>
+                <field name="reordering_price" invisible="product_id not in (7,8,9) "/>
+                <field name="pulse_rate" invisible="product_id not in (7,8,9) "/>
+                <field name="pulse_qty" invisible="product_id not in (7,8,9) "/>
+                <field name="pulse_price" invisible="product_id not in (7,8,9) "/>
+                <field name="did_qty" invisible="product_id not in (7,8,9) "/>
+                <field name="did_price" invisible="product_id not in (7,8,9) "/>
+                <field name="channel_qty" invisible="product_id not in (7,8,9) "/>
+                <field name="channel_price" invisible="product_id not in (7,8,9) "/>
+                <field name="conversation_qty" invisible="product_id not in (10,13,14) "/>
+                <field name="conversation_price" invisible="product_id not in (10,13,14) "/>
+                <field name="agents" invisible="product_id not in (10,13,14) "/>
+                <field name="mau" invisible="product_id not in (10,13,14) "/>
+                <field name="support" invisible="product_id not in (10,14) "/>
+                <field name="re" invisible="product_id != 14"/>
+                <field name="current_month"/>
+                <field name="total_month"/>
+                    
+            </group>
+            <group>
+                <field name="live_account_seq" readonly="1"/>
+                <field name="actual_expectation"/>
+                <field name="total_price" invisible="product_id not in (5,6) "/>
+                <field name="total_mrc"/>
+                <field name="total_uan" invisible="product_id not in (7,8,9) "/>
+                <field name="total_cloud" invisible="product_id not in (7,8,9) "/>
+                <field name="total_reordering" invisible="product_id not in (7,8,9) "/>
+                <field name="total_pulse" invisible="product_id not in (7,8,9) "/>
+                <field name="total_did" invisible="product_id not in (7,8,9) "/>
+                <field name="total_channel" invisible="product_id not in (7,8,9) "/>
+                <field name="total_conversation" invisible="product_id not in (10,13,14) "/>
+                <field name="total_agents" invisible="product_id not in (10,13,14) "/>
+                <field name="total_mau" invisible="product_id not in (10,13,14) "/>
+                <field name="total_support" invisible="product_id not in (10,14) "/>
+                <field name="total_re" invisible="product_id != 14"/>
+                <field name="document_ids" widget="many2many_binary"/>
+
+            </group>
+        </group>
+
+    </page>
+</xpath>
+
+
+
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='opportunity_partner']/div[2]" position="after">
+                    <!-- <field name="received_datetime" invisible="stage_id in (2,3,4,5,6,7,8,9,10,11)"/> -->
+                    <field name="responsible_user"/>
+                    <field name="remarks"/>
+                    <field name="contracted_datetime" invisible="stage_id in (1,3,4,5,6,7,8,9,10,11)"/>
+                    <field name="proposal_datetime" invisible="stage_id in (1,2,4,5,6,7,8,9,10,11)"/>
+                    <field name="tech_meeting_datetime" invisible="stage_id in (1,2,3,5,6,7,8,9,10,11)"/>
+                    <field name="revision_datetime" invisible="stage_id in (1,2,3,4,6,7,8,9,10,11)"/>
+                    <field name="demo_datetime" invisible="stage_id in (1,2,3,4,5,7,8,9,10,11)"/>
+                    <field name="agreement_datetime" invisible="stage_id in (1,2,3,4,5,6,8,9,10,11)"/>
+                    <field name="live_datetime" invisible="stage_id in (1,2,3,4,5,6,7,9,10,11)"/>
+                    <field name="golive_datetime" invisible="stage_id in (1,2,3,4,5,6,7,8,10,11)"/>
+                    <field name="sent_datetime" invisible="stage_id in (1,2,3,4,5,6,7,8,9,11)"/>
+                    <field name="closed_datetime" invisible="stage_id in (1,2,3,4,5,6,7,8,9,10)"/>
+                </xpath>
+
+                <!-- <field name="tag_ids" position="after">
+                    <field name="contracted_datetime"/>
+                    <field name="proposal_datetime"/>
+                    <field name="tech_meeting_datetime"/>
+                    <field name="revision_datetime"/>
+                    <field name="demo_datetime"/>
+                    <field name="agreement_datetime"/>
+                    <field name="live_datetime"/>
+                    <field name="golive_datetime"/>
+                    <field name="sent_datetime"/>
+                    <field name="closed_datetime"/>
+                </field> -->
+
+
+                <field name="tag_ids" position="after">
+                    <field name="start_date" invisible="stage_id not in (7,8,9,10,11)"/>
+                    <field name="end_date" invisible="stage_id not in (7,8,9,10,11)"/>
+                    
+                    <field name="time_to_change_stage"/>
+                    <field name="product" widget="many2many_tags" invisible="stage_id != 1"/>
+                    <field name="product_category" widget="many2many_tags"/>
+                    
+                </field>
+
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_stage_inherited_form" model="ir.ui.view">
+            <field name="name">crm.stage.inherited.form</field>
+            <field name="model">crm.stage</field>
+            <field name="inherit_id" ref="crm.crm_stage_form"/>
+            <field name="arch" type="xml">
+                 
+               <field name="team_id" position="after">
+                    <field name="time" widget="float_time"/>
+               </field>
+
+            </field>
+        </record> 
+        <!-- base.view_users_form -->
+        <record id="res_users_inherited_form" model="ir.ui.view">
+            <field name="name">res.users.inherited.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                 
+                <xpath expr="//form[1]/sheet[1]/div[not(@name)][2]/group[1]/field[@name='partner_id']" position="after">
+                    <field name="status"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="hr_res_users_inherited_form" model="ir.ui.view">
+            <field name="name">res.users.inherited.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="hr.res_users_view_form_profile"/>
+            <field name="arch" type="xml">
+                <field name="work_location_id" position="after"> 
+                    <field name="setaway" widget="boolean_toggle"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="hr_employee_inherited_form" model="ir.ui.view">
+            <field name="name">hr.employee.inherited.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="/form/header" position="replace" >
+                    <header>
+                        <button name="online_statuss" string="Online"  type="object" class="btn-primary"/>
+                        <button name="online_statusss" string="Set Away"  type="object" class="btn-primary"/>
+                    </header>
+                
+                </xpath>
+
+
+                <field name="work_email" position="after">
+                    <field name="online_stat"/>
+                </field>
+                
+                <field name="study_field" position="before">
+                    <field name="certification"/>
+                </field>
+
+
+               <!-- <xpath expr="//field[@name='study_field']" position="after">
+                    <field name="certification"/>
+                </xpath> -->
+               
+            </field>
+        </record>
+
+        <!-- <record id="action_mailing_contact_default_action" model="ir.actions.server">
+            <field name="name">Create Contacts</field>
+            <field name="model_id" ref="mass_mailing.model_mailing_contact"/>
+            <field name="binding_model_id" ref="mass_mailing.model_mailing_contact"/>
+            <field name="state">code</field>
+            <field name="code">
+                for rec in records:
+                    rec.mailing_open_wizard()
+            </field>
+            <field name="binding_type">action</field>
+            <field name="context">{}</field> 
+        </record> -->
+
+        <record id="mailing_contact_inherited_tree" model="ir.ui.view">
+            <field name="name">mailing.contact.inherited.tree</field>
+            <field name="model">mailing.contact</field>
+            <field name="inherit_id" ref="mass_mailing.mailing_contact_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/header" position="inside">
+                    <button name="mailing_open_wizard" type="object" display="always" string="Add Contact" class="oe_highlight btn-sm"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        
+        <record id="mailing_contact_inherited_form" model="ir.ui.view">
+            <field name="name">mailing.contact.inherited.form</field>
+            <field name="model">mailing.contact</field>
+            <field name="inherit_id" ref="mass_mailing.mailing_contact_view_form"/>
+            <field name="arch" type="xml">
+                
+               <field name="country_id" position="after">
+                    <field name="company"/>
+               </field>
+               
+            </field>
+        </record>
+
+        <record id="res_partner_inherited_form" model="ir.ui.view">
+            <field name="name">res.partner.inherited.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="vat" position="after">
+                    <field name="desc_company"/>
+                    <!-- <field name="poc_name"/> -->
+                    <field name="poc_contact_no"/>
+                    <field name="poc_email_add" widget="email"/>
+                    <field name="domain" widget="url"/>
+                    <!-- <field name="comp_web_add" widget="url"/> -->
+                    <field name="comp_social_link" widget="url"/>
+                    
+                </field>
+
+                <!-- <field name="mobile" position="after">
+                    <field name="unique_num" attrs="{'invisible': [('type', '!=', 'contact')]}"/>
+
+                    
+                </field> -->
+
+                <field name="category_id" position="after">
+                    <field name="nature_of_bus"/>
+                    <field name="KAM" widget = "many2one_tags"/>
+                    <field name="cust_success_manager"/>
+                    <field name="intrested_service" invisible="1"/>
+                    <field name="intrested_service_id" widget="many2many_tags"/>
+                    <!-- <field name="product_cat_id" widget="many2many_tags"/> -->
+
+                    <field name="company_size"/>
+                    <field name="how_they_reached_us" widget = "many2one_tags"/>
+                    <field name="date_of_first_eng"/>
+                </field>
+
+                <xpath expr="//span[@name='address_name']" position="before">
+                    <field name="id"/>
+                    <field name="create_date"/>
+                </xpath>
+                <xpath expr="//field[@name='comp_social_link']" position="after">
+                    <field name="tz"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[1]" position="after">
+                    <field name="create_uid"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="write_date"/>
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="write_uid"/>
+                </xpath>
+
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='contact_addresses']/field[@name='child_ids']/form[1]/sheet[1]/group[1]/group[1]/field[@name='name']" position="before">
+                    <field name="id"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='contact_addresses']/field[@name='child_ids']/form[1]/sheet[1]/group[1]/group[2]/field[@name='email']" position="before">
+                    <field name="write_date"/>
+                    <field name="write_uid"/>
+                </xpath>
+                
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='contact_addresses']/field[@name='child_ids']/form[1]/sheet[1]/group[1]/group[2]/field[@name='mobile']" position="after">
+                    <field name="tz"/>
+                </xpath>
+
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='contact_addresses']/field[@name='child_ids']/form[1]/sheet[1]/group[1]/group[1]/field[@name='function']" position="after">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='contact_addresses']/field[@name='child_ids']/form[1]/sheet[1]/group[1]/group[2]/field[@name='tz']" position="after">
+                    <field name="category_id" widget="many2many_tags"/>
+                </xpath>
+
+                <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='contact_addresses']/field[@name='child_ids']/form[1]/sheet[1]/group[1]/group[2]/field[@name='mobile']" position="after">
+                    <field name="contact_email"/>
+                        
+                    
+                </xpath> 
+
+
+
+            </field>
+        </record>
+
+    
+        <record id="account_move_inherited_form" model="ir.ui.view">
+            <field name="name">account.move.inherited.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="live_account_seq" invisible="move_type != 'out_invoice'"/>
+                    <field name="crm_id" invisible="move_type != 'out_invoice'"/>
+                    <field name="product_category" widget="many2many_tags" invisible="move_type != 'out_invoice'"/>
+                    <field name="product_id" widget="many2many_tags" invisible="move_type != 'out_invoice'"/>
+                    <field name="deal_stage" invisible="move_type != 'out_invoice'"/>
+                    <field name="deal_owner" invisible="move_type != 'out_invoice'"/>
+                    <field name="domain" invisible="move_type != 'out_invoice'"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_order_inherited_form" model="ir.ui.view">
+            <field name="name">sale.order.inherited.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">            
+                <field name="partner_id" position="after">
+                    <field name="deal_name"/>
+                    <field name="product_category" widget="many2many_tags"/>
+                    <field name="product_id" widget="many2many_tags"/>
+                    <field name="pipeline"/>
+                    <field name="deal_stage"/>
+                    <field name="domain"/>
+                    <field name="amount"/>
+                    
+                </field>
+                <field name="payment_term_id" position="after">
+                    <field name="currency"/>
+                    <field name="close_date"/>
+                    <field name="deal_owner"/>
+                    <field name="deal_type"/>
+                    <field name="priority" widget = "priority"/>
+                    <field name="ass_contact_email"/>
+                    <field name="ass_company"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>
