@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <record id="helpdesk_wizard_form" model="ir.ui.view">
+            <field name="name">helpdesk.wizard.form</field>
+            <field name="model">helpdesk.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Helpdesk Wizard">
+                    <group>
+                        <group>
+
+                             <field name="user_id"/>
+                             <field name="ticket_ids" widget='many2many_tags'/>
+                        </group>
+                    </group>
+                    <footer>
+                         <button name="assign_users" string="Assign User" class="btn-primary" type="object"/>
+
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_helpdesk_wizard" model="ir.actions.act_window">
+            <field name="name">Helpdesk Wizard</field>
+            <field name="res_model">helpdesk.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+   </data>
+</odoo>

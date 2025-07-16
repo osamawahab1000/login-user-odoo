@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_subtype,access.subtype,model_subtype,,1,1,1,1
+access_helpdesk_wizard,access.helpdesk_wizard,model_helpdesk_wizard,,1,1,1,1

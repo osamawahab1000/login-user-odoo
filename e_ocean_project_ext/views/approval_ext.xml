@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="approval_request_inherited_form" model="ir.ui.view">
+            <field name="name">approval.request.inherited.form</field>
+            <field name="model">approval.request</field>
+            <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='request_details']/field[@name='company_id']" position="after">
+                    <field name="position" invisible="category_id != 10"/>
+                    <field name="date_required" invisible="category_id != 10"/>
+                    <field name="position_rank" invisible="category_id != 10"/>
+                    <field name="direct_reportees" invisible="category_id != 10"/>
+                    <field name="indirect_reportees" invisible="category_id != 10"/>
+                    <field name="position_summary" invisible="category_id != 10"/>
+                    <field name="qualification" invisible="category_id != 10"/>
+                    <field name="minimum_education" invisible="category_id != 10"/>
+                    <field name="experience" invisible="category_id != 10"/>
+                    <field name="budget" invisible="category_id != 10"/>
+                    <field name="non_budget" invisible="category_id != 10"/>
+                </xpath>
+
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Job Description" invisible="category_id != 10">
+                        <group>
+                            <group>
+                                <field name="job_description" invisible="category_id != 10"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Eligibility Attributes" invisible="category_id != 10">
+                        <group>
+                            <group>
+                                <field name="age" invisible="category_id != 10"/>
+                                <field name="years_of_experience" invisible="category_id != 10"/>
+                            </group>
+                            <group>
+                                <field name="gender" invisible="category_id != 10"/>
+                                <field name="package" invisible="category_id != 10"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

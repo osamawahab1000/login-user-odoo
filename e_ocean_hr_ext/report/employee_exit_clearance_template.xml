@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="report_employee_exit_clearance" name="Exit Clearance Form">
+    <t t-call="web.basic_layout">
+      <t t-foreach="docs" t-as="o">
+        <div class="page" style="margin: 0; padding: 0mm 10mm 4mm 10mm; font-size: 28px;">
+          <!-- Logo Left, Title Centered -->
+          <table style="width:100%; margin-bottom: 35px;">
+            <tr>
+              <td style="width: 80px;">
+                <img t-if="o.company_id.logo"
+                     t-att-src="'data:image/png;base64,%s' % o.company_id.logo.decode('utf-8')"
+                     style="height: 65px; width: auto;"
+                     alt="Company Logo"/>
+              </td>
+              <td style="text-align: center;">
+                <h2 style="margin: 0; font-size: 42px; font-weight: bold;">Exit Clearance Form</h2>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Instruction -->
+          <p style="font-size: 20px; text-align: justify; margin-bottom: 8px;">
+            Before your departure, please ensure that you have clearance by your Immediate Supervisor, IT, Admin, Finance, and HR Department on the following requirements:
+          </p>
+
+          <!-- Employee Info Table -->
+          <table class="table table-sm" style="width:100%; font-size:20px; margin-bottom: 20px;">
+            <tr>
+              <td><strong>Name:</strong> <span t-esc="o.name"/></td>
+              <td><strong>Employee ID:</strong> <span t-esc="o.employee_id1"/></td>
+            </tr>
+            <tr>
+              <td><strong>Position Held:</strong> <span t-esc="o.job_title"/></td>
+              <td><strong>Last Day of Service:</strong> <span t-esc="o.last_day_of_service"/></td>
+            </tr>
+            <tr>
+              <td><strong>Department:</strong> <span t-esc="o.department_id.name"/></td>
+              <td><strong>Supervisor Name:</strong> <span t-esc="o.supervisor_name.name"/></td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>Type of Separation:</strong> <span t-esc="o.type_of_separation"/></td>
+            </tr>
+          </table>
+
+          <!-- Clearance Checklist Table -->
+          <table class="table table-sm" style="width:100%; font-size:16px; border:1px solid #000; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color:#eee;">
+                <th style="border:1px solid #000; padding: 4px;">Department</th>
+                <th style="border:1px solid #000; padding: 4px;">Checklist</th>
+                <th style="border:1px solid #000; padding: 4px;">Comment (If Any)</th>
+                <th style="border:1px solid #000; padding: 4px;">Name &amp; Sign</th>
+                <th style="border:1px solid #000; padding: 4px;">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Each department row -->
+              <tr>
+                <td style="border:1px solid #000; padding: 4px;">Immediate Supervisor</td>
+                <td style="border:1px solid #000; padding: 4px;">
+                  <ul>
+                    <li t-if="o.handover">Tasks completed and handover done</li>
+                    <li t-if="o.data_clearance">Data clearance</li>
+                  </ul>
+                </td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.comment1" t-esc="o.comment1"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.approved_by1" t-esc="o.approved_by1.name"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.date1" t-esc="o.date1"/></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding: 4px;">IT Department</td>
+                <td style="border:1px solid #000; padding: 4px;">
+                  <ul>
+                    <li t-if="o.laptop">Laptop &amp; accessories returned</li>
+                    <li t-if="o.company_phone">Company phone returned</li>
+                    <li><strong>Assets:</strong> <span t-esc="o.asset_serial_number"/></li>
+                  </ul>
+                </td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.comment2" t-esc="o.comment2"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.approved_by2" t-esc="o.approved_by2.name"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.date2" t-esc="o.date2"/></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding: 4px;">Access Revocation</td>
+                <td style="border:1px solid #000; padding: 4px;">
+                  <span t-if="o.email_id1">Email &amp; access revoked</span>
+                </td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.comment3" t-esc="o.comment3"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.approved_by3" t-esc="o.approved_by3.name"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.date3" t-esc="o.date3"/></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding: 4px;">Admin Department</td>
+                <td style="border:1px solid #000; padding: 4px;">
+                  <ul>
+                    <li t-if="o.company_card">ID card returned</li>
+                    <li t-if="o.drawer_keys">Drawer keys returned</li>
+                    <li t-if="o.company_vehicle">Vehicle returned</li>
+                    <li t-if="o.company_mobile_phone">Mobile phone returned</li>
+                    <li t-if="o.company_sim">SIM returned</li>
+                    <li t-if="o.company_internet">Internet device returned</li>
+                    <li t-if="o.removed_from_group">Removed from WhatsApp groups</li>
+                  </ul>
+                </td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.comment4" t-esc="o.comment4"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.approved_by4" t-esc="o.approved_by4.name"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.date4" t-esc="o.date4"/></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding: 4px;">Finance Department</td>
+                <td style="border:1px solid #000; padding: 4px;">
+                  <ul>
+                    <li t-if="o.outstanding_advances">Advances settled</li>
+                    <li t-if="o.receipt_submitted">Receipts submitted</li>
+                    <li t-if="o.outstanding_dues">Outstanding dues cleared</li>
+                  </ul>
+                </td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.comment5" t-esc="o.comment5"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.approved_by5" t-esc="o.approved_by5.name"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.date5" t-esc="o.date5"/></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #000; padding: 4px;">HR Department</td>
+                <td style="border:1px solid #000; padding: 4px;">
+                  <ul>
+                    <li t-if="o.benefits_cancelled">Benefits cancelled</li>
+                    <li t-if="o.exit_interview_completed">Exit interview done</li>
+                    <li t-if="o.hrms_portal">HRMS access revoked</li>
+                    <li t-if="o.signed_document">NDA signed</li>
+                    <li t-if="o.resignation_approved_by_hr">Resignation approved</li>
+                  </ul>
+                </td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.comment6" t-esc="o.comment6"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.approved_by6" t-esc="o.approved_by6.name"/></td>
+                <td style="border:1px solid #000; padding: 4px;"><span t-if="o.date6" t-esc="o.date6"/></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Acknowledgement -->
+          <p style="margin-top: 15px; font-size:20px;">
+            I confirm that I have returned all company property and will not retain, use, or disclose any proprietary or confidential information after my departure.
+          </p>
+          <p style="font-size:20px;">
+            I acknowledge that I will continue to maintain all company-related information and will not disclose or share it on social media or other platforms.
+          </p>
+          <div style="height: 30px;"></div>
+<!--          <p style=" font-size: 12px;">-->
+            <div class="row" style=" font-size: 20px;">
+              <div class="col-8">
+                <b>Employee’s Signature: _____________________</b>
+              </div>
+              <div class="col-4">
+                <b>Date: _______________</b>
+              </div>
+            </div>
+<!--            <strong>Employee’s Signature: ______________________   Date: ______________</strong>-->
+<!--          </p>-->
+          <div style="height: 60px;"/>
+            <p style="font-size:12px; text-align: center;">Note: Return this form to the HR Department on completion for smooth full and final settlement</p>
+        </div>
+      </t>
+    </t>
+  </template>
+</odoo>

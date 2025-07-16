@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="employee_exit_clearance_report" model="ir.actions.report">
+        <field name="name">Exit Clearance Form</field>
+        <field name="model">hr.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">e_ocean_hr_ext.report_employee_exit_clearance</field>
+        <field name="report_file">e_ocean_hr_ext.report_employee_exit_clearance</field>
+        <field name="paperformat_id" ref="e_ocean_hr_ext.paperformat_exit_clearance"/>
+        <field name="binding_model_id" ref="hr.model_hr_employee"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Exit Clearance - %s' % (object.name)</field>
+    </record>
+</odoo>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+<!--     Admin Email Template -->
+    <record id="onboarding_admin_email_template" model="mail.template">
+        <field name="name">Admin Onboarding Notification</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="subject">Onboarding Task: Admin Arrangements for ${object.name}</field>
+        <field name="email_to">${object.admin_user_id.email}</field>
+        <field name="body_html" type="html">
+            <![CDATA[
+                <p>Dear ${object.admin_user_id.name},</p>
+                <p>Please ensure the following onboarding arrangements are made:</p>
+                <ul>
+                    <li>Confirm seating arrangements</li>
+                    <li>Provide gift box, laptop, and accessories</li>
+                    <li>Arrange lunch for the new joiner</li>
+                </ul>
+                <p><strong>Employee:</strong> ${object.name}<br/>
+                   <strong>Joining Date:</strong> ${object.joining_date}</p>
+            ]]>
+        </field>
+    </record>
+
+    <!-- IT Email Template -->
+    <record id="onboarding_it_email_template" model="mail.template">
+        <field name="name">IT Onboarding Notification</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="subject">Onboarding Task: IT Setup for ${object.name}</field>
+        <field name="email_to">${object.it_user_id.email}</field>
+        <field name="body_html" type="html">
+            <![CDATA[
+                <p>Dear ${object.it_user_id.name},</p>
+                <p>Please ensure the following IT setup is completed:</p>
+                <ul>
+                    <li>Email ID creation</li>
+                    <li>Attendance machine registration</li>
+                    <li>System access</li>
+                </ul>
+                <p><strong>Employee:</strong> ${object.name}<br/>
+                   <strong>Joining Date:</strong> ${object.joining_date}</p>
+            ]]>
+        </field>
+    </record>
+
+    <record id="onboarding_hr_email_template" model="mail.template">
+<!--    <data>-->
+    <!-- HR Email Template -->
+        <field name="name">HR Onboarding Notification</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="subject">Onboarding Task: HR Orientation for ${object.name}</field>
+        <field name="email_to">${object.hr_user_id.email}</field>
+        <field name="body_html" type="html">
+            <![CDATA[
+                <p>Dear ${object.hr_user_id.name},</p>
+                <p>Please arrange HR onboarding formalities for the new employee.</p>
+                <p><strong>Employee:</strong> ${object.name}<br/>
+                   <strong>Joining Date:</strong> ${object.joining_date}</p>
+            ]]>
+        </field>
+    </record>
+
+    <!-- Finance Email Template -->
+    <record id="onboarding_finance_email_template" model="mail.template">
+        <field name="name">Finance Onboarding Notification</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="subject">Onboarding Task: Finance Setup for ${object.name}</field>
+        <field name="email_to">${object.finance_user_id.email}</field>
+        <field name="body_html" type="html">
+            <![CDATA[
+                <p>Dear ${object.finance_user_id.name},</p>
+                <p>Please complete the finance onboarding tasks:</p>
+                <ul>
+                    <li>Bank account setup</li>
+                    <li>Payroll configuration</li>
+                </ul>
+                <p><strong>Employee:</strong> ${object.name}<br/>
+                   <strong>Joining Date:</strong> ${object.joining_date}</p>
+            ]]>
+        </field>
+    </record>
+
+    <!-- Operations Email Template -->
+    <record id="onboarding_operations_email_template" model="mail.template">
+        <field name="name">Operations Onboarding Notification</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="subject">Onboarding Task: Operations Setup for ${object.name}</field>
+        <field name="email_to">${object.operations_user_id.email}</field>
+        <field name="body_html" type="html">
+            <![CDATA[
+                <p>Dear ${object.operations_user_id.name},</p>
+                <p>Please complete necessary operational arrangements for the new employee.</p>
+                <p><strong>Employee:</strong> ${object.name}<br/>
+                   <strong>Joining Date:</strong> ${object.joining_date}</p>
+            ]]>
+        </field>
+    </record>
+
+    </data>
+</odoo>

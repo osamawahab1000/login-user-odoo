@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="project_task_inherited_form" model="ir.ui.view">
+            <field name="name">project.task.inherited.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='personal_stage_type_id']" position="after">
+                 <!-- 370 -->
+                <!-- 364 -->
+                <!-- 358 -->
+                <!-- 359 -->
+                    <button string="In Progress" name="in_progress" type="object" invisible="project_id not in (34,58) or stage_id not in (370,372,610,612)"/>
+                    <button string="On Hold" name="on_hold" type="object" invisible="project_id not in (34,58) or stage_id not in (371,611)"/>
+                    <button string="Approve By Eocean" name="approve_by" type="object" invisible="project_id not in (34,58) or stage_id not in (371,611) or first_approval == True"/>
+                    <button string="Approve By Interkey" name="approve_by_second" type="object" invisible="project_id != 58 or stage_id != 611 or second_approval == True"/>
+                    <button string="Closed" name="closed" type="object" invisible="project_id not in (34,58) or stage_id not in (373,613)"/>
+                    <button string="Cancelled" name="cancelled" type="object" invisible="project_id not in (34,58) or stage_id in (375,615)"/>
+                    <button string="Start" name="un_cancelled" type="object" invisible="project_id not in (34,58) or stage_id not in (375,615)"/>
+
+
+                    <button string="Approve By Eocean" name="approve_by" type="object" invisible="project_id not in (33,59) or stage_id not in (364,637) or first_approval == True"/>
+                    <button string="Approve By Interkey" name="approve_by_second" type="object" invisible="project_id != 59 or stage_id != 637 or second_approval == True"/>
+                    <button string="In Progress" name="in_progress" type="object" invisible="project_id not in (33,59) or stage_id not in (366,639)"/>
+                    <button string="On Hold" name="on_hold" type="object" invisible="project_id not in (33,59) or stage_id not in (365,638)"/>
+                    <button string="Resolve" name="resolved1" type="object" invisible="project_id not in (33,59) or stage_id not in (365,638)"/>
+                    <button string="Closed" name="closed" type="object" invisible="project_id not in (33,59) or stage_id not in (367,640)"/>
+                    <button string="Cancelled" name="cancelled" type="object" invisible="project_id not in (33,59) or stage_id in (369,642)"/>
+                    <button string="Start" name="un_cancelled" type="object" invisible="project_id not in (33,59) or stage_id not in (369,642)"/>
+
+                    <button string="Approve By Eocean" name="approve_by" type="object" invisible="project_id not in (32,57) or stage_id not in (358,603) or first_approval == True"/>
+                    <button string="Approve By Interkey" name="approve_by_second" type="object" invisible="project_id != 57 or stage_id != 603 or second_approval == True"/>
+                    <button string="In Progress" name="in_progress" type="object" invisible="project_id not in (32,57) or stage_id not in (360,605)"/>
+                    <button string="On Hold" name="on_hold" type="object" invisible="project_id not in (32,57) or stage_id not in (359,604)"/>
+                    <button string="Resolve" name="resolved" type="object" invisible="project_id not in (32,57) or stage_id not in (359,604)"/>
+                    <button string="Revoke Access" name="revoke_access" type="object" invisible="project_id not in (32,57) or stage_id not in (361,606)"/>
+                    <button string="Closed" name="closed" type="object" invisible="project_id not in (32,57) or stage_id not in (440,607)"/>
+                    <button string="Cancelled" name="cancelled" type="object" invisible="project_id not in (32,57) or stage_id not in (363,609)"/>
+                    <button string="Start" name="un_cancelled" type="object" invisible="project_id not in (32,57) or stage_id in (363,609)"/>
+                   
+                    <button string="Approve" name="approve_by" type="object" invisible="project_id != 38 or stage_id !=462"/>
+                    <button string="Pending At Client" name="pending_at_client" type="object" invisible="project_id != 38 or stage_id != 452"/>
+                    <button string="Pending At Eocean" name="pending_at_eocean" type="object" invisible="project_id != 38 or stage_id != 453"/>
+                    <button string="Done" name="done1" type="object" invisible="project_id != 38 or stage_id != 454"/>
+                    <button string="Rejected" name="rejected" type="object" invisible="project_id != 38 or stage_id == 456"/>
+                    <button string="Open" name="un_cancelled" type="object" invisible="project_id != 38 or stage_id != 456"/>
+
+                    <button string="Approve" name="approve_by" type="object" invisible="project_id != 39 or stage_id !=463"/>
+                    <button string="Pending At Client" name="pending_at_client" type="object" invisible="project_id != 39 or stage_id != 457"/>
+                    <button string="Pending At Eocean" name="pending_at_eocean" type="object" invisible="project_id != 39 or stage_id != 458"/>
+                    <button string="Done" name="done1" type="object" invisible="project_id != 39 or stage_id != 459"/>
+                    <button string="Rejected" name="rejected" type="object" invisible="project_id != 39 or stage_id == 461"/>
+                    <button string="Open" name="un_cancelled" type="object" invisible="project_id != 39 or stage_id != 461"/>
+                </xpath>
+                <!-- VPN and IP -->
+
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/field[@name='tag_ids']" position="after">
+                    <field name="public_ip1"   invisible="project_id not in (39,38)"/>
+                    <field name="private_ip1" invisible="project_id not in (39,38)"/>
+                    <field name="sales_approver" invisible="project_id not in (39,38)"/>
+                    <field name="first_approval" invisible="1"/>
+                    <field name="second_approval" invisible="1"/>
+                </xpath>
+
+                 <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]" position="after">
+                    <field name="company_name" invisible="project_id not in (39,38)"/>
+                    <field name="type_of_access" invisible="project_id not in (39,38)"/>
+                 
+                </xpath>
+                <!-- VPN and IP -->
+
+                
+               <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[2]" position="after">
+                    <!-- Incident -->
+                    <field name="incident_date" invisible="project_id not in (34,58)"  readonly="stage_id not in  (370,610)"/>
+                    <field name="contact_name" invisible="project_id not in (34,58)"  readonly="stage_id not in  (370,610)"/>
+                    <field name="incident_location" invisible="project_id not in (34,58)"  readonly="stage_id not in  (370,610)"/>
+                    <field name="incident_category" invisible="project_id not in (34,58)"  readonly="stage_id not in  (370,610)"/>
+                    <field name="incident_description" invisible="project_id not in (34,58)"  readonly="stage_id not in  (370,610)"/>
+                    <field name="user_name_resolver" invisible="project_id not in (34,58)"  readonly="stage_id not in  (370,610)"/>
+                            
+                    <!-- Change -->
+                    <field name="cmf_no" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+                    <field name="change_instance" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+                    <field name="change_type" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+
+                    <field name="change_description" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+                    <field name="rationale_for_change" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+                    <field name="change_category" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+                    <field name="remarks" invisible="project_id not in (33,59)" readonly="stage_id not in  (364,637)"/>
+                    <!-- Access -->
+                    <field name="department_id" invisible="project_id not in (32,57)"  readonly="stage_id not in (358,603)"/>
+                    <field name="acm_no" invisible="project_id not in (32,57)"   readonly="stage_id not in (358,603)"/>
+                    <field name="access_type" invisible="project_id not in (32,57)"  readonly="stage_id not in (358,603)"/>
+                    <field name="time_period" invisible="project_id not in (32,57) or access_type != 'temporary'"  readonly="stage_id not in (358,603)"/>
+                    <field name="agreement" invisible="project_id not in (32,57)"  readonly="stage_id not in (358,603)"/>
+                    <field name="role" invisible="project_id not in (32,57)"  readonly="stage_id not in (358,603)"/>
+                    <field name="type_of_engagement" invisible="project_id not in (32,57)"  readonly="stage_id not in (358,603)"/>
+                    <field name="comments3" invisible="project_id not in (32,57)"  readonly="stage_id not in (358,603)"/>
+               </xpath>
+
+               <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+               <!-- Incident -->
+                    <page string="Incident Classification And Assignment" invisible="project_id not in (34,58)">
+                    <group>
+                        <group>
+                            <field name="incident_category_2"  readonly="stage_id not in  (370,610)"/>
+                            <field name="incident_no"  readonly="stage_id not in  (370,610)"/>
+                            <field name="approver_id" widget="many2many_tags"  readonly="stage_id not in  (370,610)"/>
+                            <field name="closure_date"  readonly="stage_id not in  (370,610)"/>
+
+                        </group>
+                        <group>
+                        
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Root Cause Analysis And Resolution" invisible="project_id not in (34,58) or stage_id in (370,610)">
+                    <group>
+                        <group>
+                            <field name="root_cause" required="stage_id == 371" readonly="stage_id not in  (371,611)"/>
+                            <field name="corrective_action" required="stage_id == 371" readonly="stage_id not in  (371,611)"/>
+                            <field name="evidences" required="stage_id == 371" readonly="stage_id not in  (371,611)"/>
+
+                        </group>
+                        <group>
+                            <!-- <field name="user_signature"/> -->
+
+                            <field name="resolution_date" required="stage_id == 371" readonly="stage_id not in  (371,611)"/>
+                            <!-- <field name="date1"/> -->
+                        
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Incident Closure And Feedback " invisible="project_id not in (34,58) or stage_id not in (373,374,613,614)">
+                    <group>
+                        <group>
+                            <field name="incident_feedback" required="stage_id in (373,613)"/>
+                            <field name="comments"/>
+                           
+                        </group>
+                        <group>
+                            <field name="user_reporter" required="stage_id in (373,613)"/>
+                            <!-- <field name="user_signature2"/> -->
+                            <field name="date2" required="stage_id in (373,613)"/>
+                           
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Incident Manager’s Review And Final Closure" invisible="project_id not in (34,58) or stage_id not in (373,374,613,614)">
+                    <group>
+                        <group>
+                            <field name="incident_status" required="stage_id in (373,613)"/>
+                            <field name="comments2" required="stage_id in (373,613)"/>
+                           
+                        </group>
+                        <group>
+                            <field name="user_name3" required="stage_id in (373,613)"/>
+                            <!-- <field name="user_signature3"/> -->
+                            <field name="date3" required="stage_id in (373,613)"/>
+                           
+                        </group>
+                    </group>
+
+                    </page>
+                    <!-- Change -->
+                    <page string="Description" invisible="project_id not in (33,34,32,57,58,59)">
+                    <group>
+                        <group>
+                        <!-- required="stage_id in (364,370,358,603)" -->
+                            <field name="description3"  readonly="stage_id not in  (364,370,358,603,637,610)"/>
+                            
+                           
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Change Risk Management" invisible="project_id not in (33,59)">
+                    <group>
+                        <group>
+                            <field name="related_risk" readonly="stage_id not in  (364,637)"/>
+                            <field name="impact" readonly="stage_id not in  (364,637)"/>
+                           
+                        </group>
+                        <group>
+                            <field name="contingency_plan" readonly="stage_id not in  (364,637)"/>
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Change Approval"  invisible="project_id not in (33,59) or stage_id == 364">
+                    <group>
+                        <group>
+                            <field name="approve_by1" readonly="stage_id not in  (364,637)"/>
+                            <field name="approve_by11" readonly="True" invisible="project_id != 59"/>
+                            <field name="department" readonly="stage_id not in  (364,637)"/>
+                           
+                        </group>
+                        <group>
+                            <!-- <field name="user_signature4"/> -->
+                            <field name="date4" readonly="stage_id not in  (364,637)"/>
+                            <field name="date41" readonly="True" invisible="project_id != 59"/>
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Change Implementation" invisible="project_id not in (33,59) ">
+                    <group>
+                        <group>
+                            <field name="implementer" readonly="stage_id not in  (364,637)"/>
+                            <field name="second_implementer_name" readonly="stage_id not in  (364,637)"/>
+                            <field name="backup_procedure" readonly="stage_id not in  (364,637)"/>
+                           
+                        </group>
+                        <group>
+                            <field name="deployment_notes" readonly="stage_id not in  (364,637)"/>
+                            <field name="deployment_procedure" readonly="stage_id not in  (364,637)"/>
+                            <field name="implementation_lead" readonly="stage_id not in  (364,637)"/>
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Change Closure And Final Review" invisible="project_id not in (33,59) or stage_id not in (367,368,369,640,641,642)">
+                    <group>
+                        <group>
+                            <field name="resolved_date"/>
+                            <field name="implementation_lead_name" />
+                            
+                        </group>
+                        <group>
+                            <field name="closed_date"/>
+                            <!-- <field name="Initiator_name"/>
+                            <field name="initiator_signature"/> -->
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                    <!-- Access -->
+                    <page string="Department Review" invisible="project_id not in (32,57)">
+                    <group>
+                        <group>
+                            <field name="comments4"/>
+                            
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                    <page string="Final Approval" invisible="project_id not in (32,57)">
+                    <group>
+                        <group>
+                            <field name="approver_name" readonly="True"/>
+                            <field name="approver_name1" readonly="True" invisible="project_id != 57"/>
+                            <field name="cto_signature"/>
+                            
+                        </group>
+                        <group>
+                            <field name="date5" readonly="True"/>
+                            <field name="date51" readonly="True" invisible="project_id != 57"/>
+                            
+                        </group>
+                    </group>
+
+                    </page>
+                </xpath>
+            </field>
+        </record> 
+        
+
+    </data>
+
+</odoo>

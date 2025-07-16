@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="e_ocean_hr_ext.kpi_sample_tree" model="ir.ui.view">
+        <field name="name">kpi.sample.tree</field>
+        <field name="model">kpi.sample</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="job_description"/>
+                <field name="job_position"/>
+                <field name="parent_department"/>
+                <field name="report_to"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="e_ocean_hr_ext.kpi_sample_form" model="ir.ui.view">
+        <field name="name">kpi.sample.form</field>
+        <field name="model">kpi.sample</field>
+        <field name="arch" type="xml">
+            <form string="KPI">
+                <sheet>
+                <!-- <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div> -->
+                    
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="job_description"/>
+                            <field name="parent_department"/>
+                        </group>
+                        <group>
+                            <field name="job_position"/>
+                            <field name="report_to"/>
+                            <field name="location"/>
+                        </group>
+                        
+                    </group>
+                    <notebook>
+                        <page string="Job Responsibilities">
+                        <group>
+                            <group>
+                                <field name="note1"/>
+                                <!--  -->
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+
+                        </page>
+                        <page string="Key Performance Indicators">
+                            <field name="kpi_sample_line_ids">
+
+                            <tree editable="bottom">
+                                <field name="kpi"/>
+                                <field name="target"/>
+                                <field name="actual_performance"/>
+                                <field name="remarks"/>
+                                <field name="kpi_id" column_invisible="1"/>
+                            </tree>
+                                                    
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="kpi"/>
+                                        <field name="target"/>
+                                        <field name="actual_performance"/>
+                                        <field name="remarks"/>
+                                        <field name="kpi_id" invisible="1"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+        
+    </record>
+
+
+    <!-- Action definition -->
+    <record id="action_kpi_sample" model="ir.actions.act_window">
+        <field name="name">KPI</field>
+        <field name="res_model">kpi.sample</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item definition -->
+    <menuitem id="menu_kpi_sample" name="KPI" parent="hr_appraisal.menu_hr_appraisal_root" action="action_kpi_sample" sequence="11"/>
+</odoo>

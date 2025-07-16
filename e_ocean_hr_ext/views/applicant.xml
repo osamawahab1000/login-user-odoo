@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <record id="hr_employee_inherited_form" model="ir.ui.view">
+                <field name="name">hr.employee.inherited.view</field>
+                <field name="model">hr.employee</field>
+                <field name="inherit_id" ref="hr.view_employee_form"/>
+                <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                        <button name="open_departure_wizard"
+                                type="object"
+                                string="Offboarding"
+                                class="btn-primary"
+                                icon="fa-sign-out"
+                                invisible="not active"/>
+                    <field name="activity_ids" widget="activity" invisible="1"/>
+                </xpath>
+
+                    <xpath expr="//form/header" position="inside">
+                        <button name="action_offboard_employee"
+                                type="object"
+                                string="Offboard"
+                                class="btn-danger"
+                                invisible="not all_clearance_done or not active"/>
+                    </xpath>
+
+
+                    <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                        <page string="Exit Clearance Form">
+                        <group>
+                            <group>
+                                    <field name="employee_id1"/>
+                                    <field name="type_of_separation"/>
+                                    <field name="all_clearance_done" invisible="1"/>
+                            </group>
+                            <group>
+                                    <field name="last_day_of_service"/>
+                                    <field name="supervisor_name"/>
+
+                            </group>
+                        </group>
+                        <group string="Immediate Supervisor">
+                            <group>
+                                    <field name="handover"/>
+                                    <field name="data_clearance"/>
+
+                            </group>
+                            <group>
+                                    <field name="comment1"/>
+                                    <field name="approved_by1"/>
+                                    <field name="date1"/>
+
+                            </group>
+                        </group>
+                        <group string="IT Department">
+                            <group>
+                                    <field name="laptop"/>
+                                    <field name="company_phone"/>
+
+                            </group>
+                            <group>
+                                    <field name="asset_serial_number"/>
+                                    <field name="approved_by2"/>
+                                    <field name="date2"/>
+
+                            </group>
+                        </group>
+                        <group string="Access Revocation Confirmation">
+                            <group>
+                                    <field name="email_id1"/>
+
+                            </group>
+                            <group>
+                                    <field name="comment3"/>
+                                    <field name="approved_by3"/>
+                                    <field name="date3"/>
+
+                            </group>
+                        </group>
+                        <group string="Admin Department">
+                            <group>
+                                    <field name="company_card"/>
+                                    <field name="drawer_keys"/>
+                                    <field name="company_vehicle"/>
+                                    <field name="company_mobile_phone"/>
+                                    <field name="company_sim"/>
+                                    <field name="company_internet"/>
+                                    <field name="removed_from_group"/>
+
+                            </group>
+                            <group>
+                                    <field name="comment4"/>
+                                    <field name="approved_by4"/>
+                                    <field name="date4"/>
+
+                            </group>
+                        </group>
+                        <group string="Finance Department">
+                            <group>
+                                    <field name="outstanding_advances"/>
+                                    <field name="receipt_submitted"/>
+                                    <field name="outstanding_dues"/>
+                                   
+                            </group>
+                            <group>
+                                    <field name="comment5"/>
+                                    <field name="approved_by5"/>
+                                    <field name="date5"/>
+
+                            </group>
+                        </group>
+                        <group string="HR Department">
+                            <group>
+                                    <field name="benefits_cancelled"/>
+                                    <field name="exit_interview_completed"/>
+                                    <field name="hrms_portal"/>
+                                    <field name="signed_document"/>
+                                    <field name="resignation_approved_by_hr"/>
+                                   
+                            </group>
+                            <group>
+                                    <field name="comment6"/>
+                                    <field name="approved_by6"/>
+                                    <field name="date6"/>
+
+                            </group>
+                        </group>
+                        </page>
+                    </xpath>
+
+                    <xpath expr="//form/sheet/notebook" position="inside">
+                        <page name="onboarding_page" string="ON Boarding">
+                            <div class="oe_title" style="padding: 15px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <label style="font-weight: bold; width: 70px;" for="admin_user_id">Admin User:</label>
+                                    <field name="admin_user_id" style="flex: 1;"/>
+                                    <button name="action_notify_all_onboarding_departments" type="object"
+                                            icon="fa-envelope" class="btn btn-primary"
+                                            invisible="admin_user_id == False"
+                                            style="margin-left: 10px; width: 40px;"/>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <label style="font-weight: bold; width: 70px;" for="it_user_id">IT User:</label>
+                                    <field name="it_user_id" style="flex: 1;"/>
+                                    <button name="action_notify_all_onboarding_departments" type="object"
+                                            icon="fa-envelope" class="btn btn-primary"
+                                            invisible="it_user_id == False"
+                                            style="margin-left: 10px; width: 40px;"/>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <label style="font-weight: bold; width: 70px;" for="hr_user_id">HR User:</label>
+                                    <field name="hr_user_id" style="flex: 1;"/>
+                                    <button name="action_notify_all_onboarding_departments" type="object"
+                                            icon="fa-envelope" class="btn btn-primary"
+                                            invisible="hr_user_id == False"
+                                            style="margin-left: 10px; width: 40px;"/>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <label style="font-weight: bold; width: 70px;" for="finance_user_id">Finance User:</label>
+                                    <field name="finance_user_id" style="flex: 1;"/>
+                                    <button name="action_notify_all_onboarding_departments" type="object"
+                                            icon="fa-envelope" class="btn btn-primary"
+                                            invisible="finance_user_id == False"
+                                            style="margin-left: 10px; width: 40px;"/>
+                                </div>
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <label style="font-weight: bold; width: 70px;"  for="operations_user_id">Operations User:</label>
+                                    <field name="operations_user_id" style="flex: 1;"/>
+                                    <button name="action_notify_all_onboarding_departments" type="object"
+                                            icon="fa-envelope" class="btn btn-primary"
+                                            invisible="operations_user_id == False"
+                                            style="margin-left: 10px; width: 40px;"/>
+                                </div>
+                            </div>
+                        </page>
+                    </xpath>
+
+
+                </field>
+            </record>
+
+
+        <record id="view_hr_departure_wizard_inherited" model="ir.ui.view">
+            <field name="name">hr.departure.wizard.inherit</field>
+            <field name="model">hr.departure.wizard</field>
+            <field name="inherit_id" ref="hr.hr_departure_wizard_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@id='info']" position="after">
+                    <group string="Departmental Sign-off Users">
+                        <field name="supervisor_user_id"/>
+                        <field name="it_user_id"/>
+                        <field name="admin_user_id"/>
+                        <field name="finance_user_id"/>
+                        <field name="hr_user_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+            <record id="hr_applicant_inherited_kanban" model="ir.ui.view">
+                <field name="name">hr.applicant.inherited.view</field>
+                <field name="model">hr.applicant</field>
+                <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+                <field name="arch" type="xml">
+
+                    <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                        <page string="Overall Recommendation">
+                                <group string="Please select one option under Shortlist, Reject, or No Show.">
+                                        <group string="Shortlist">
+                                            <group>
+                                                    <field name="shortlist" widget="radio"/>
+                                            </group>
+                                            <group>
+
+                                            </group>
+                                        </group>
+                                        <group string="Reject">
+                                            <group>
+                                                    <field name="reject" widget="radio"/>
+                                            </group>
+                                            <group>
+
+                                            </group>
+                                        </group>
+                                        <group string="Show Up">
+                                            <group>
+                                                    <field name="show_up" widget="radio"/>
+                                            </group>
+                                            <group>
+
+                                            </group>
+                                        </group>
+
+                                </group>
+                                        <group string="Additional Comments">
+                                            <group>
+                                                    <field name="additional_comment"/>
+                                            </group>
+                                            <!-- <group>
+
+                                            </group> -->
+                                        </group>
+                        </page>
+                         <page string="Post Interview Evaluation Form" >
+                            <group string="Communication Skills">
+                                <group>
+                                    <field name="communication_skills" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="comment1"/>
+                                </group>
+                            </group>
+                            <group string="Technical Knowledge">
+                                <group>
+                                    <field name="technical_knowledge" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="comment2"/>
+                                </group>
+                            </group>
+                            <group string="Problem Solving Ability">
+                                <group>
+                                    <field name="problem_solving_ability" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="comment3"/>
+                                </group>
+                            </group>
+                            <group string="Team Fit / Cultural Fit">
+                                <group>
+                                    <field name="team_fit" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="comment4"/>
+                                </group>
+                            </group>
+                            <group string="Attitude and Professionalism">
+                                <group>
+                                    <field name="attitude" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="comment5"/>
+                                </group>
+                            </group>
+                            <group string="Relevant Experience">
+                                <group>
+                                    <field name="relevant_experience" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="comment6"/>
+                                </group>
+                            </group>
+
+                        </page>
+
+                    </xpath>
+
+                    <xpath expr="//field[@name='categ_ids']" position="after">
+                        <field name="ex_employer_1"/>
+                        <field name="ex_employer_email"/>
+                        <button name="action_send_email_to_ex_employer" type="object"
+                                icon="fa-envelope" class="btn btn-primary"
+                                invisible="ex_employer_email == False"
+                                style="margin-left: 10px; width: 40px;"/>
+                    </xpath>
+
+                    <field name="interviewer_ids" position="after">
+                        <field name="first_interview_date"/>
+                        <field name="first_interview_checkbox"/>
+                        <field name="first_interview_email_sent"/>
+                        <field name="second_interview_date"/>
+                    </field>
+                    <field name="type_id" position="after">
+                        <field name="address"/>
+                        <field name="dob"/>
+                        <field name="cnic"/>
+                        <field name="years_of_experience"/>
+                        <field name="reason"/>
+                        <field name="notice_period"/>
+
+                    </field>
+                
+                </field>
+            </record>
+
+     </data>
+</odoo>
+

@@ -1,0 +1,9 @@
+.custom_ex_email_field {
+    width: 500px;
+}
+
+.custom_ex_email_field label {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 150px;
+}
